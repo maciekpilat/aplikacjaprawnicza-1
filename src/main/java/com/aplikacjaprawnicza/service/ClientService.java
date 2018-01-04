@@ -2,6 +2,8 @@ package com.aplikacjaprawnicza.service;
 
 import com.aplikacjaprawnicza.model.domain.Client;
 import java.util.List;
+import org.springframework.stereotype.Service;
+
 
 public interface ClientService {
 
@@ -13,12 +15,12 @@ public interface ClientService {
 
     void updateClient(Client client);
 
-    void deleteClientById(long id);
+    void deleteClientById(Long id);
 
     List<Client> findAllClients();
 
     List<Client> findByFirm();
-    
+
     void deleteAllClients();
 
     boolean isClientExist(Client client);
