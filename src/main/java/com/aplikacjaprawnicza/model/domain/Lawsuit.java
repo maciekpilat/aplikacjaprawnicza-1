@@ -1,62 +1,60 @@
 package com.aplikacjaprawnicza.model.domain;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import org.hibernate.annotations.Fetch;
 
 @Entity
-@Table(name="lawsuits")
+@Table(name = "lawsuits")
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id")
 public class Lawsuit {
-@Id
-@GeneratedValue
-private Long id;
-private String title;
-private Date startDate;
-private Date endDate;
 
-@ManyToOne
-@JoinColumn(name = "client_id")
-private Client client;
+    @Id
+    @GeneratedValue
+    private Long id;
+    private String title;
+    private Date startDate;
+    private Date endDate;
 
-@ManyToOne
-@JoinColumn(name = "firm_id")
-private Firm firm;
+    @ManyToOne
+    @JoinColumn(name = "client_id")
+    private Client client;
 
+    @ManyToOne
+    @JoinColumn(name = "firm_id")
+    private Firm firm;
 
 //@ManyToMany(mappedBy = "parties")
 //private Collection<Parties> parties = new ArrayList<Parties>();
-
-
 //@ManyToMany()
 //private Collection<Partner> partners = new ArrayList<Partner>();
 //@ManyToMany()
 //private Collection<Assistant> asistants = new ArrayList<Assistant>();
-
 //@ManyToOne
 //private Court court;
-
-@OneToMany(mappedBy = "lawsuit")
-private List <Event> events;
+    @OneToMany(mappedBy = "lawsuit")
+    @JsonManagedReference
+    private List<Event> events;
 
     public Lawsuit() {
     }
 
-
-
     public Lawsuit(String title) {
         this.title = title;
     }
-
-
-
-
-
 
     public Long getId() {
         return id;
@@ -106,8 +104,4 @@ private List <Event> events;
         this.events = events;
     }
 
-  
-
-
-    
 }

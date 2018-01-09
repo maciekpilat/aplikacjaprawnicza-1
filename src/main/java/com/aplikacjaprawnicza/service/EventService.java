@@ -9,19 +9,9 @@ import org.springframework.stereotype.Service;
 public interface EventService {
 
     Event findById(long id);
+    
+    void saveEvent(Event event);
 
-    Client findByName(String name);
-
-    void saveClient(Client client);
-
-    void updateClient(Client client);
-
-    void deleteClientById(long id);
-
-    List<Client> findAllClients();
-
-    void deleteAllClients();
-
-    boolean isClientExist(Client client);
+   
 
 }

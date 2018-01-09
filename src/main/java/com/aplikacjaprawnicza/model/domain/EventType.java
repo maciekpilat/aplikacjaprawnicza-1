@@ -16,7 +16,7 @@ public class EventType {
     private String name;
     private String remarks;
     
-    // or a list of possible next events
+   // or a list of possible next events
    // private EventType nextEvent;
     
     

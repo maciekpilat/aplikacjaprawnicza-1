@@ -27,7 +27,11 @@ public class Firm {
     
     @OneToMany(mappedBy = "firm")
     private List<Lawsuit> lawsuits;
-
+    
+    //jsonignore
+    // User admin - odpowiada administratorowi 
+    
+    
     public long getId() {
         return id;
     }
