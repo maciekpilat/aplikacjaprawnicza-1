@@ -1,5 +1,7 @@
 package com.aplikacjaprawnicza.model.domain;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -14,6 +16,9 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="parties")
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "partyId")
 public class Party {
 @Id
 @GeneratedValue

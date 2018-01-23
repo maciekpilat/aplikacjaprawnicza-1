@@ -1,4 +1,4 @@
-package com.aplikacjaprawnicza.controller;
+package com.aplikacjaprawnicza.api.controller;
 
 import com.aplikacjaprawnicza.util.CustomErrorType;
 import com.aplikacjaprawnicza.model.domain.Client;
@@ -16,17 +16,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class ClientController {
+public class ClientRestController {
     
     @Autowired
     ClientService clientService;
 
-    public static final Logger logger = LoggerFactory.getLogger(ClientController.class);
+    public static final Logger logger = LoggerFactory.getLogger(ClientRestController.class);
 
-    
-    
-    
-    @GetMapping("/client/{id}")
+    @GetMapping("api/clients/{id}")
     public ResponseEntity<?> getClientById(@PathVariable("id") long id) {
         
         Client client = clientService.findById(id);
@@ -39,9 +36,8 @@ public class ClientController {
         return new ResponseEntity<Client>(client, HttpStatus.OK);
     }
     
-    @PostMapping("/client")
-     public ResponseEntity<?> createClient(@RequestBody Client client) {
-        System.out.println("POST klient!");
+    @PostMapping("api/clients")
+     public ResponseEntity<?> createOrUpdateClient(@RequestBody Client client) {
         
        clientService.saveClient(client);
         
@@ -51,7 +47,7 @@ public class ClientController {
     
     
     
-    @DeleteMapping("/client/{id}")
+    @DeleteMapping("api/clients/{id}")
     public ResponseEntity<?> deleteClient(@PathVariable("id") long id) {
         logger.info("Fetching & Deleting Client with id {}", id);
  
